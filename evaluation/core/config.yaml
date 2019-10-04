@@ -1,0 +1,31 @@
+color:
+  n_bin   : 12        # histogram bins
+  n_slice : 3         # slice image
+  h_type  : 'region'  #'global' means count the histogram for whole image,'region' means count the histogram for regions in images, then concatanate all of them
+daisy:
+  n_slice    : 2
+  n_orient   : 8
+  step       : 10
+  radius     : 30
+  rings      : 2
+  histograms : 6
+  h_type     : 'region'
+gabor:
+  theta     : 4
+  frequency : 0.1 0.5 0.8
+  sigma     : 1 3 5
+  bandwidth : 0.3 0.7 1
+  n_slice   : 2
+  h_type    : 'global'
+hog:
+  n_bin    : 10
+  n_slice  : 6
+  n_orient : 8
+  p_p_c    : 2 2 #pixels_per_cell
+  c_p_b    : 1 1 #cells_per_block
+  h_type   : 'region'
+sift:
+  n_d : 32
+resnet:
+  model   : resnet152
+  o_t     : avg #or max

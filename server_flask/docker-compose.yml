@@ -1,0 +1,11 @@
+version: '3'
+services:
+  aquiladb:
+    image: ammaorg/aquiladb
+    ports:
+      - "50051:50051"
+    volumes:
+      - db-data:/opt/couchdb/data
+    restart: always
+volumes:
+  db-data:

@@ -1,0 +1,7 @@
+flask
+flask-restplus
+flask-Injector
+flask_api
+aquiladb
+opencv-contrib-python==3.4.2.16
+opencv-python==3.4.2.16
