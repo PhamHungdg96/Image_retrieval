@@ -5,7 +5,7 @@ import numpy as np
 import scipy.misc
 import os
 import yaml
-cfg=yaml.safe_load(open('config.yaml'))
+cfg=yaml.safe_load(open('core/config.yaml'))
 type_ex='hog'
 # configs for feature
 n_bin    = cfg[type_ex]['n_bin']

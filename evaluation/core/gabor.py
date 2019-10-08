@@ -10,7 +10,7 @@ import scipy.misc
 import os
 
 import yaml
-cfg=yaml.safe_load(open('config.yaml'))
+cfg=yaml.safe_load(open('core/config.yaml'))
 type_ex='gabor'
 theta     = cfg[type_ex]['theta']
 frequency = tuple(float(i) for i in cfg[type_ex]['frequency'].split(' '))

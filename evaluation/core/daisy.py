@@ -9,7 +9,7 @@ import scipy.misc
 
 import os
 import yaml
-cfg=yaml.safe_load(open('config.yaml'))
+cfg=yaml.safe_load(open('core/config.yaml'))
 type_ex='daisy'
 n_slice    = cfg[type_ex]['n_slice']
 n_orient   = cfg[type_ex]['n_orient']

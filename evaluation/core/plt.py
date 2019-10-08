@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 import scipy.misc
-output_dir = "../../summary/"
-def show_summary(y,type_ex=None,depth=10,summary=None,is_save=False):
+def show_summary(y,type_ex=None,depth=10,summary=None,is_save=False,output_dir = "../../summary/"):
     x=range(len(y))
     f = plt.figure()
     title='Type of query: %s depth: %s'%(type_ex,depth)
@@ -15,8 +15,14 @@ def show_summary(y,type_ex=None,depth=10,summary=None,is_save=False):
     ax.set_xlabel('query')
     ax.set_ylabel('mAP')
     ax.set_title('%s'%summary)
-    plt.show() if not is_save else f.savefig('%s.png'%(output_dir+file_name))   
-def show_image_result(query, results,type_ex=None, depth_show=10,is_save=False, type_show='best'):
+    if not is_save:
+        plt.show()  
+    else: 
+        output=os.path.join(output_dir,type_ex)
+        if not os.path.exists(output):
+            os.makedirs(output)
+        f.savefig(os.path.join(output,'%s.png'%file_name))  
+def show_image_result(query, results,type_ex=None, depth_show=10,is_save=False, type_show='best',output_dir = "../../summary/"):
     rows = 3
     cols = depth_show//(rows-1)
     depth=len(results)
@@ -25,12 +31,12 @@ def show_image_result(query, results,type_ex=None, depth_show=10,is_save=False, 
     f.canvas.manager.full_screen_toggle()
     for num  in range(rows*cols):
         if num==0:
-            if isinstance(query[1], np.ndarray):  # examinate input type
-                img = query[1].copy()
+            if isinstance(query[-1], np.ndarray):  # examinate input type
+                img = query[-1].copy()
             else:
-                img = scipy.misc.imread(query[1], mode='RGB')
+                img = scipy.misc.imread(query[-1], mode='RGB')
             ax = f.add_subplot(rows,cols,num+1)
-            ax.set_title('query: %s'% query[0])
+            ax.set_title('query: %s'% query[1])
             ax.axis('off')
             ax.imshow(img,interpolation='nearest')
         elif num > cols-1:
@@ -38,12 +44,18 @@ def show_image_result(query, results,type_ex=None, depth_show=10,is_save=False, 
                 if isinstance(results[num-cols][1], np.ndarray):  # examinate input type
                     img = results[num-cols][1].copy()
                 else:
-                    img = scipy.misc.imread(results[num-cols][1], mode='RGB')
+                    img = scipy.misc.imread(results[num-cols][-1], mode='RGB')
                 ax = f.add_subplot(rows,cols,num+1)
-                ax.set_title(results[num-cols][0])
+                ax.set_title(results[num-cols][1])
                 ax.axis('off')
                 ax.imshow(img, interpolation='nearest')
-    plt.show() if not is_save else f.savefig('%s.png'%(output_dir+file_name))
+    if not is_save:
+        plt.show()  
+    else: 
+        output=os.path.join(output_dir,type_ex)
+        if not os.path.exists(output):
+            os.makedirs(output)
+        f.savefig(os.path.join(output,'%s.png'%file_name))
 if __name__=='__main__':
     y=range(1000)
     show_summary(y, is_save=True)

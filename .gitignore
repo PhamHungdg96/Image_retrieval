@@ -1,5 +1,6 @@
 .vscode
 data
+Data
 evaluation/index/*
 .DS_Store
 cropimage/node_modules

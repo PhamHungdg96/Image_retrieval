@@ -6,7 +6,7 @@ import scipy.misc
 import os
 import cv2
 import yaml
-cfg=yaml.safe_load(open('config.yaml'))
+cfg=yaml.safe_load(open('core/config.yaml'))
 type_ex='sift'
 # configs for feature
 n_d   = cfg[type_ex]['n_d']

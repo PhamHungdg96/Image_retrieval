@@ -29,3 +29,5 @@ sift:
 resnet:
   model   : resnet152
   o_t     : avg #or max
+vgg:
+  model : vgg19

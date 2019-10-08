@@ -1,7 +1,7 @@
 from __future__ import print_function
 import os
 import yaml
-cfg=yaml.safe_load(open('config.yaml'))
+cfg=yaml.safe_load(open('core/config.yaml'))
 type_ex='resnet'
 model= cfg[type_ex]['model']
 output_type=cfg[type_ex]['o_t']
@@ -78,7 +78,7 @@ class Restnet_Ex(object):
         assert isinstance(input, str)
         img=Image.open(input).convert('RGB')
         x=torch.unsqueeze(self.transforms(img),dim=0)
-        y=self.net(x)['avg'].data[0].numpy()
+        y=self.net(x)[self.output_type].data[0].numpy()
         if self.normalize:
             y /= np.sum(y)
         return y
