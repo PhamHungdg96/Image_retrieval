@@ -2,6 +2,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import scipy.misc
+class print_log:
+    def __init__(self,output_dir='log/',type_ex='color'):
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+        path_log=os.path.join(output_dir,type_ex)
+        if not os.path.exists(path_log):
+            os.makedirs(path_log)
+        self.f=open(os.path.join(path_log,'logfile'), "a+")
+    def __call__(self,content, end='\n'):
+        self.f.write(content+end)
+
+
 def show_summary(y,type_ex=None,depth=10,summary=None,is_save=False,output_dir = "../../summary/"):
     x=range(len(y))
     f = plt.figure()
@@ -41,8 +53,8 @@ def show_image_result(query, results,type_ex=None, depth_show=10,is_save=False, 
             ax.imshow(img,interpolation='nearest')
         elif num > cols-1:
             if num-cols<len(results):
-                if isinstance(results[num-cols][1], np.ndarray):  # examinate input type
-                    img = results[num-cols][1].copy()
+                if isinstance(results[num-cols][-1], np.ndarray):  # examinate input type
+                    img = results[num-cols][-1].copy()
                 else:
                     img = scipy.misc.imread(results[num-cols][-1], mode='RGB')
                 ax = f.add_subplot(rows,cols,num+1)

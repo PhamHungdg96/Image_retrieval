@@ -2,8 +2,8 @@ from __future__ import print_function
 from skimage.feature import hog
 from skimage import color
 import numpy as np
-import scipy.misc
 import os
+import cv2
 import yaml
 cfg=yaml.safe_load(open('core/config.yaml'))
 type_ex='hog'
@@ -41,7 +41,8 @@ class HOG(object):
         if isinstance(input, np.ndarray):  # examinate input type
             img = input.copy()
         else:
-            img = scipy.misc.imread(input, mode='RGB')
+            img = cv2.imread(input)
+            img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
         height, width, channel = img.shape
   
         if self.type == 'global':

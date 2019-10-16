@@ -2,7 +2,6 @@ from __future__ import print_function
 from skimage.feature import hog
 from skimage import color
 import numpy as np
-import scipy.misc
 import os
 import cv2
 import yaml

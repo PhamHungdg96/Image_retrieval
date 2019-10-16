@@ -1,8 +1,8 @@
 from __future__ import print_function
 
 from six.moves import cPickle
-import numpy as np
-import scipy.misc
+import numpy as np 
+import cv2
 import itertools
 import os
 import yaml
@@ -39,7 +39,8 @@ class Color(object):
         if isinstance(input, np.ndarray):  # examinate input type
             img = input.copy()
         else:
-            img = scipy.misc.imread(input, mode='RGB')
+            img = cv2.imread(input)
+            img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
         height, width, channel = img.shape
         bins = np.linspace(0, 256, self.n_bin+1, endpoint=True)  # slice bins equally for each channel
     
@@ -82,15 +83,11 @@ class Color(object):
 
 if __name__ == "__main__":
     color = Color()
-    input = '../../data/style/0_0_001.png'
-    # test normalize
-    # hist = color.feature(input, type='global')
+    input = '../data_folder/images/0_0_001.png'
     hist = color.feature(input)
     assert hist.sum() - 1 < 1e-9, "normalize false"
-    print(color.dimension)
+
     input = '../../data/style/0_0_006.png'
-    # test normalize
-    # hist2 = color.feature(input, type='global')
     hist2 = color.feature(input)
     assert hist.sum() - 1 < 1e-9, "normalize false"
     # print(hist2)

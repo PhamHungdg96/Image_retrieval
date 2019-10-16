@@ -2,6 +2,8 @@ import numpy as np
 import ngtpy
 import pandas as pd
 import yaml
+import time
+
 from .plt import show_image_result,show_summary
 import os
 from .color import Color
@@ -10,7 +12,6 @@ from .daisy import Daisy
 from .gabor import Gabor
 from .SIFT import SIFT
 from .resnet import Restnet_Ex
-
 
 cfg=yaml.safe_load(open('core/config.yaml'))
 class Evaluate(object):
@@ -58,7 +59,7 @@ class Evaluate(object):
         for id_lbl,(lbl,_,ip) in enumerate(db_query):
             results=self.query(ip)
             id_result=[id for id,_ in results]
-            lbl_result=np.array([db_sample[i][0] for i in id_result])
+            lbl_result=np.array([db_sample[i][0] for i in id_result]) #colum lbl
             _ap=(lbl_result==lbl).sum()/ self.depth
             list_AP.append((_ap,id_lbl,id_result))
             if id_lbl%500==0:

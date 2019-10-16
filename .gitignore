@@ -2,9 +2,13 @@
 data
 Data
 evaluation/index/*
+evaluation/log/*
+evaluation/data_folder/images
 .DS_Store
 cropimage/node_modules
 cropimage/dist
+TensorFlow*
+segmentation_forcus
 
 # local env files
 .env.local
@@ -23,3 +27,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+evaluation.zip
