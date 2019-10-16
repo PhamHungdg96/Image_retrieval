@@ -38,7 +38,7 @@ if __name__=='__main__':
         
         start_time=time.time()
         list_eval=eval.score_AP(db_query,db_sample)
-        log('Take about %.3f ms each query.'%((time.time()-start_time)*1000/len(db_query)))
+        log('with size %d ,take about %.3f ms each query.'%(depth,(time.time()-start_time)*1000/len(db_query)))
         list_AP=np.array(list_eval[:,0])
         best_id=np.argmax(list_AP)
         bad_id=np.argmin(list_AP)
