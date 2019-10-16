@@ -35,7 +35,7 @@ class Evaluate(object):
         elif type_ex=='daisy':
             return Daisy()
         elif type_ex=='gabor':
-            return Daisy()
+            return Gabor()
         elif type_ex=='hog':
             return HOG()
         elif type_ex=='sift':
