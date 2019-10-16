@@ -4,6 +4,8 @@ from core.mAP import Evaluate
 from core.plt import show_summary,show_image_result,print_log
 import pandas as pd
 import numpy as np
+import time
+
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-t","--type", help="color, daisy,gabor,hog,sift,resnet",default='color', type=str)
@@ -34,8 +36,9 @@ if __name__=='__main__':
         db_sample   =  [(lbl_id,lbl_nm,folder_img + nm_img) for lbl_nm,lbl_id,nm_img in df_sample.iloc[:,2:].values]
         db_query    =  [(lbl_id,lbl_nm,folder_img + nm_img) for lbl_nm,lbl_id,nm_img in df_query.iloc[:,2:].values]
         
-
+        start_time=time.time()
         list_eval=eval.score_AP(db_query,db_sample)
+        log('Take about %.3f ms each query.'%((time.time()-start_time)*1000/len(db_query)))
         list_AP=np.array(list_eval[:,0])
         best_id=np.argmax(list_AP)
         bad_id=np.argmin(list_AP)
