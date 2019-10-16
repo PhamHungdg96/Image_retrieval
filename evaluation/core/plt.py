@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import scipy.misc
+import cv2
 class print_log:
     def __init__(self,output_dir='log/',type_ex='color'):
         if not os.path.exists(output_dir):
@@ -46,7 +46,7 @@ def show_image_result(query, results,type_ex=None, depth_show=10,is_save=False, 
             if isinstance(query[-1], np.ndarray):  # examinate input type
                 img = query[-1].copy()
             else:
-                img = scipy.misc.imread(query[-1], mode='RGB')
+                img = cv2.cvtColor(cv2.imread(query[-1]),cv2.COLOR_BGR2RGB)
             ax = f.add_subplot(rows,cols,num+1)
             ax.set_title('query: %s'% query[1])
             ax.axis('off')
@@ -56,7 +56,7 @@ def show_image_result(query, results,type_ex=None, depth_show=10,is_save=False, 
                 if isinstance(results[num-cols][-1], np.ndarray):  # examinate input type
                     img = results[num-cols][-1].copy()
                 else:
-                    img = scipy.misc.imread(results[num-cols][-1], mode='RGB')
+                    img = cv2.cvtColor(cv2.imread(results[num-cols][-1]),cv2.COLOR_BGR2RGB)
                 ax = f.add_subplot(rows,cols,num+1)
                 ax.set_title(results[num-cols][1])
                 ax.axis('off')

@@ -28,3 +28,4 @@ yarn-error.log*
 *.sln
 *.sw?
 evaluation.zip
+pytorch_custom_yolo_training*

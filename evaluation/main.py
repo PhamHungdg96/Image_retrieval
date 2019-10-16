@@ -12,12 +12,12 @@ if __name__=='__main__':
     parser.add_argument("-l","--log",help="file log",default='log',type=str)
     args = parser.parse_args()
     type_ex=args.type
-    log=args.log
-    log=print_log(output_dir=log,type_ex=type_ex)
+    log_f=args.log
+    log=print_log(output_dir=log_f,type_ex=type_ex)
     if args.mode == 'init':
         log(10*'-'+'mode create index'+10*'-')
         df_sample= pd.read_csv(r'index/samples.csv')
-        create_index=CreateIndex(df_sample.values,path_image='data_folder/images/', type_ex=type_ex,path_index_root='index',log=log)
+        create_index=CreateIndex(df_sample.values,path_image='data_folder/images/', type_ex=type_ex,path_index_root='index',log=log_f)
         create_index(distance_type="Normalized Cosine")
     elif args.mode == 'query':
         print('init')
